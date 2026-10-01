@@ -1,0 +1,42 @@
+[project]
+name = "spklu-ga-pso"
+version = "0.1.0"
+description = "Custom GA and PSO screening for public EV charging sites in Gading Serpong and BSD City"
+readme = "README.md"
+requires-python = ">=3.12,<3.15"
+dependencies = [
+    "folium>=0.20",
+    "geopandas>=1.1",
+    "networkx>=3.4",
+    "numpy>=2.2",
+    "osmnx>=2.1",
+    "pandas>=2.2",
+    "PySide6>=6.8",
+    "plotly>=6.0",
+    "pyproj>=3.7",
+    "rasterio>=1.4",
+    "requests>=2.32",
+    "shapely>=2.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3", "ruff>=0.11"]
+
+[project.scripts]
+spklu = "spklu.cli:main"
+spklu-gui = "spklu.desktop:main"
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["spklu"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = [".uv-cache", ".venv-desktop"]
